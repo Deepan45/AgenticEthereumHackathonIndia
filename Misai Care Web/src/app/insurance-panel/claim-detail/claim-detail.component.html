@@ -1,0 +1,179 @@
+<!-- src/app/insurance-panel/claims/claim-detail.component.html -->
+<div class="container-fluid px-4 py-5">
+  <div class="glass-card rounded-4 p-4">
+    <button class="btn btn-back mb-3" (click)="router.navigate(['/insurance/claims'])">
+      <i class="bi bi-arrow-left"></i> Back to Inbox
+    </button>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-gradient fw-bold mb-0">
+        <i class="bi bi-file-earmark-text-fill me-2"></i>Claim Details – {{ claimId }}
+      </h2>
+      <span class="badge verified-badge">
+        <i class="bi bi-shield-check me-1"></i>Verified
+      </span>
+    </div>
+
+    <div class="row">
+      <!-- Patient Info Card -->
+      <div class="col-md-4 mb-4">
+        <div class="info-card patient-card h-100">
+          <div class="card-header">
+            <i class="bi bi-person-circle"></i> Patient Information
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="label">Name:</span>
+              <span class="value">{{ vcData.patient }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Policy No:</span>
+              <span class="value">{{ vcData.policyNo }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Treatment Info Card -->
+      <div class="col-md-4 mb-4">
+        <div class="info-card treatment-card h-100">
+          <div class="card-header">
+            <i class="bi bi-heart-pulse"></i> Treatment Details
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="label">Diagnosis:</span>
+              <span class="value">{{ vcData.diagnosis }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Treatments:</span>
+              <div class="treatment-tags">
+                <span class="tag" *ngFor="let treatment of vcData.treatment">{{ treatment }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hospital Info Card -->
+      <div class="col-md-4 mb-4">
+        <div class="info-card hospital-card h-100">
+          <div class="card-header">
+            <i class="bi bi-hospital"></i> Hospital Information
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="label">Hospital:</span>
+              <span class="value">{{ vcData.hospital }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Doctor:</span>
+              <span class="value">{{ vcData.doctor }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Amount:</span>
+              <span class="value amount">{{ vcData.amount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VC JSON Section -->
+    <div class="section-card mb-4">
+      <div class="section-header d-flex justify-content-between align-items-center">
+        <h5><i class="bi bi-file-code-fill text-success me-2"></i>Verifiable Credential</h5>
+        <button class="btn btn-sm btn-toggle" (click)="toggleJsonView()">
+          {{ showRawJson ? 'Show Formatted' : 'Show Raw JSON' }}
+        </button>
+      </div>
+      <div class="section-body">
+        <div *ngIf="showRawJson; else formattedView">
+          <pre class="json-viewer">{{ vcData | json }}</pre>
+        </div>
+        <ng-template #formattedView>
+          <div class="formatted-data">
+            <!-- Formatted data view would go here -->
+            <div class="formatted-row">
+              <span class="formatted-key">Credential ID:</span>
+              <span class="formatted-value">{{ vcData.id }}</span>
+            </div>
+            <div class="formatted-row">
+              <span class="formatted-key">Issued At:</span>
+              <span class="formatted-value">{{ vcData.issuedAt }}</span>
+            </div>
+            <!-- Add more formatted data fields as needed -->
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- AI Analysis Section -->
+    <div class="section-card mb-4">
+      <div class="section-header">
+        <h5><i class="bi bi-robot text-info me-2"></i>AI Analysis Summary</h5>
+      </div>
+      <div class="section-body">
+        <div class="ai-analysis">
+          <div class="ai-icon">
+            <i class="bi bi-lightbulb-fill"></i>
+          </div>
+          <div class="ai-content">
+            {{ gptSummary }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verification Section -->
+    <div class="section-card mb-4">
+      <div class="section-header">
+        <h5><i class="bi bi-shield-check text-primary me-2"></i>Verification Status</h5>
+      </div>
+      <div class="section-body">
+        <div class="verification-grid">
+          <div class="verification-item">
+            <div class="verification-icon success">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="verification-text">
+              <div class="verification-title">ZK Proof</div>
+              <div class="verification-status">Verified</div>
+            </div>
+          </div>
+          <div class="verification-item">
+            <div class="verification-icon success">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="verification-text">
+              <div class="verification-title">ABHA Verification</div>
+              <div class="verification-status">Verified</div>
+            </div>
+          </div>
+          <div class="verification-item">
+            <div class="verification-icon success">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="verification-text">
+              <div class="verification-title">Policy Active</div>
+              <div class="verification-status">Verified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons mt-5">
+      <button class="btn btn-success btn-action" (click)="approveClaim()">
+        <i class="bi bi-check-circle-fill me-2"></i>Approve Claim
+      </button>
+      <button class="btn btn-danger btn-action" (click)="rejectClaim()">
+        <i class="bi bi-x-circle-fill me-2"></i>Reject Claim
+      </button>
+      <!-- <button class="btn btn-warning btn-action" (click)="flagForDAO()">
+        <i class="bi bi-flag-fill me-2"></i>Flag for DAO
+      </button> -->
+    </div>
+  </div>
+</div>

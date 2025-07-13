@@ -1,0 +1,209 @@
+<div class="dashboard-container">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1 class="dashboard-title">Hospital Insurance Dashboard</h1>
+      <p class="dashboard-subtitle">Comprehensive overview of insurance operations</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-refresh">
+        <i class="fas fa-sync-alt"></i> Refresh
+      </button>
+      <div class="date-display">
+        <i class="fas fa-calendar-alt"></i> {{ currentDate | date:'fullDate' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Overview Cards -->
+  <div class="stats-overview">
+    <!-- Pre-Auth Card -->
+    <div class="stat-card warning">
+      <div class="stat-header">
+        <i class="fas fa-clipboard-check"></i>
+        <h3>Pre-Authorizations</h3>
+      </div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <span class="stat-value">{{ preAuthStats.pending + preAuthStats.approved + preAuthStats.rejected }}</span>
+          <span class="stat-label">Total Requests</span>
+        </div>
+        <div class="stat-breakdown">
+          <div class="stat-item">
+            <span class="badge warning">{{ preAuthStats.pending }}</span>
+            <span>Pending</span>
+          </div>
+          <div class="stat-item">
+            <span class="badge success">{{ preAuthStats.approved }}</span>
+            <span>Approved</span>
+          </div>
+          <div class="stat-item">
+            <span class="badge danger">{{ preAuthStats.rejected }}</span>
+            <span>Rejected</span>
+          </div>
+        </div>
+      </div>
+      <div class="stat-footer">
+        <a href="#" class="link">View all <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Claims Card -->
+    <div class="stat-card info">
+      <div class="stat-header">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h3>Insurance Claims</h3>
+      </div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <span class="stat-value">{{ claimStatus.submitted }}</span>
+          <span class="stat-label">Total Claims</span>
+        </div>
+        <div class="stat-breakdown">
+          <div class="stat-item">
+            <span class="badge success">{{ claimStatus.paid }}</span>
+            <span>Paid</span>
+          </div>
+          <div class="stat-item">
+            <span class="badge danger">{{ claimStatus.disputed }}</span>
+            <span>Disputed</span>
+          </div>
+          <div class="stat-item">
+            <span class="badge warning">{{ claimStatus.submitted - claimStatus.paid - claimStatus.disputed }}</span>
+            <span>Processing</span>
+          </div>
+        </div>
+      </div>
+      <div class="stat-footer">
+        <a href="#" class="link">View all <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Treatments Card -->
+    <div class="stat-card success">
+      <div class="stat-header">
+        <i class="fas fa-procedures"></i>
+        <h3>Patient Treatments</h3>
+      </div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <span class="stat-value">{{ treatmentRecords }}</span>
+          <span class="stat-label">This Month</span>
+        </div>
+        <div class="stat-trend">
+          <i class="fas fa-arrow-up trend-up"></i>
+          <span>12% from last month</span>
+        </div>
+      </div>
+      <div class="stat-footer">
+        <button class="btn-action">
+          <i class="fas fa-plus"></i> New Treatment
+        </button>
+      </div>
+    </div>
+
+    <!-- Revenue Card -->
+    <div class="stat-card purple">
+      <div class="stat-header">
+        <i class="fas fa-hand-holding-usd"></i>
+        <h3>Insurance Revenue</h3>
+      </div>
+      <div class="stat-content">
+        <div class="stat-main">
+          <span class="stat-value">${{ revenue | number:'1.0-0' }}</span>
+          <span class="stat-label">This Month</span>
+        </div>
+        <div class="stat-trend">
+          <i class="fas fa-arrow-up trend-up"></i>
+          <span>8% from last month</span>
+        </div>
+      </div>
+      <div class="stat-footer">
+        <a href="#" class="link">View report <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="dashboard-content">
+    <!-- Notifications Panel -->
+    <div class="content-panel notifications-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-bell"></i> Recent Notifications</h3>
+        <span class="badge">{{ notifications.length }} New</span>
+      </div>
+      <div class="panel-body">
+        <div class="notifications-list">
+          <div *ngFor="let note of notifications" class="notification-item" [class.unread]="note.unread">
+            <div class="notification-icon">
+              <i class="fas" [ngClass]="{
+                'fa-check-circle success': note.type === 'success',
+                'fa-exclamation-triangle warning': note.type === 'warning',
+                'fa-info-circle info': note.type === 'info'
+              }"></i>
+            </div>
+            <div class="notification-content">
+              <p class="notification-message">{{ note.message }}</p>
+              <span class="notification-time">{{ note.time }}</span>
+            </div>
+            <div class="notification-action">
+              <button class="btn-icon">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <a href="#" class="link">View all notifications</a>
+      </div>
+    </div>
+
+    <!-- Activity Timeline -->
+    <div class="content-panel activity-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+      </div>
+      <div class="panel-body">
+        <div class="timeline">
+          <div *ngFor="let activity of recentActivities" class="timeline-item">
+            <div class="timeline-badge" [ngClass]="activity.type"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-title">{{ activity.title }}</span>
+                <span class="timeline-time">{{ activity.time }}</span>
+              </div>
+              <p class="timeline-desc">{{ activity.description }}</p>
+              <div *ngIf="activity.action" class="timeline-actions">
+                <button class="btn-sm">{{ activity.action }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-buttons">
+        <button class="action-btn">
+          <i class="fas fa-file-medical"></i>
+          <span>New Pre-Auth</span>
+        </button>
+        <button class="action-btn">
+          <i class="fas fa-file-import"></i>
+          <span>Submit Claim</span>
+        </button>
+        <button class="action-btn">
+          <i class="fas fa-user-injured"></i>
+          <span>Add Patient</span>
+        </button>
+        <button class="action-btn">
+          <i class="fas fa-chart-line"></i>
+          <span>Generate Report</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

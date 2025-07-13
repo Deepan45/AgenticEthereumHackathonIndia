@@ -1,0 +1,86 @@
+<div class="container-fluid px-4 py-5">
+  <div class="glass-card rounded-4 p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-gradient fw-bold mb-0">
+        <i class="bi bi-inbox-fill me-2"></i>Claims Inbox
+      </h2>
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search claims...">
+      </div>
+    </div>
+
+    <div class="status-tabs mb-4">
+      <div class="nav-scroller">
+        <div class="nav nav-pills" role="tablist">
+          <button *ngFor="let tab of statusTabs" 
+                  class="nav-link" 
+                  [class.active]="currentTab === tab" 
+                  (click)="setFilter(tab)">
+            {{ tab }}
+            <span class="badge ms-1">{{ tabCounts[tab] }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr class="table-head">
+            <th>Claim ID</th>
+            <th>Patient</th>
+            <th>Hospital</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let claim of filteredClaims" class="table-row">
+            <td class="fw-bold">{{ claim.id }}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="avatar-sm me-2">
+                  {{ claim.patient.charAt(0) }}
+                </div>
+                {{ claim.patient }}
+              </div>
+            </td>
+            <td>{{ claim.hospital }}</td>
+            <td>{{ claim.date }}</td>
+            <td class="fw-bold">{{ claim.amount | currency:'INR':'symbol':'1.0-0' }}</td>
+            <td>
+              <span class="badge rounded-pill status-badge" 
+                    [ngClass]="{
+                      'submitted': claim.status === 'Submitted',
+                      'approved': claim.status === 'Approved',
+                      'paid': claim.status === 'Paid',
+                      'disputed': claim.status === 'Disputed'
+                    }">
+                <i class="bi me-1" 
+                   [class.bi-hourglass]="claim.status === 'Submitted'"
+                   [class.bi-check-circle]="claim.status === 'Approved'"
+                   [class.bi-currency-rupee]="claim.status === 'Paid'"
+                   [class.bi-exclamation-triangle]="claim.status === 'Disputed'"></i>
+                {{ claim.status }}
+              </span>
+            </td>
+            <td>
+              <button (click)="viewClaim(claim.id)" class="btn btn-view">
+                <i class="bi bi-eye-fill"></i> View
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="filteredClaims.length === 0" class="empty-state text-center py-5">
+      <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+      <h4 class="mt-3">No claims found</h4>
+      <p class="text-muted">There are no claims matching your current filter</p>
+    </div>
+  </div>
+</div>

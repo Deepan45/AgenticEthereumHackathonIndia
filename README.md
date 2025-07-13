@@ -1,54 +1,25 @@
-# Agentic Ethereum Hackathon India
+Agentic Ethereum Hackathon India
+🛠 Project Title – Tech Misai
+Welcome to our submission for the Agentic Ethereum Hackathon by Reskilll & Geodework! This repository includes our project code, documentation, and related assets.
 
-# 🛠 Project Title - [Team Name]
+📌 Problem Statement
+We addressed the challenge: “Decentralized Identity and Verification in Healthcare”
+Healthcare providers — including hospitals, insurers, and clinics — suffer from slow manual workflows, data silos, and weak identity checks. Patients are forced to repeatedly share sensitive information, increasing both risk and friction. These inefficiencies block interoperability, raise costs, and enable fraud — all of which hurt patient trust and access to care.
 
-Welcome to our submission for the *Agentic Ethereum Hackathon* by Reskilll & Geodework! This repository includes our project code, documentation, and related assets.
+💡 Our Solution
+Project Name: Misai Care
+Misai Care is a privacy-preserving decentralized identity solution built for healthcare providers and insurers. It leverages verifiable credentials, blockchain, and LLM-powered interfaces to streamline patient onboarding, reduce oversharing, and enhance trust between stakeholders. With on-chain logic and off-chain AI, Misai Care ensures secure, fast, and interoperable identity verification.
 
----
+🧱 Tech Stack
+🖥 Frontend: Angular
 
-## 📌 Problem Statement
+⚙ Backend: Node.js + Express
 
-We addressed the challenge: *“[Problem Statement Title]”*  
-Brief description of the challenge and why it matters.
+🧠 AI: LLaMA (Meta AI) for identity parsing and patient data summarization
 
----
+🔗 Blockchain: Ethereum + Solidity + Foundry
 
-## 💡 Our Solution
+🔍 DB/Storage: IPFS (document storage), PostgreSQL (structured data)
 
-*Project Name:* [Your Project Name]  
-A short pitch of your solution — what you built, who it’s for, and why it’s impactful.
-
----
-
-## 🧱 Tech Stack
-
-- 🖥 Frontend: [React / Next.js / etc.]
-- ⚙ Backend: [Node.js / Python / etc.]
-- 🧠 AI: [Llama 3 / LangChain / OpenAI / etc.]
-- 🔗 Blockchain: [Ethereum / Solidity / Foundry / etc.]
-- 🔍 DB/Storage: [IPFS / PostgreSQL / Firebase / etc.]
-- 🚀 Hosting: [Vercel / Netlify / Render / etc.]
-
----
-
-## 📽 Demo
-
-- 🎥 *Video Link*: [YouTube/Drive Link]  
-- 🖥 *Live App (if available)*: [URL]
-
----
-
-## 📂 Repository Structure
-
-```bash
-.
-├── frontend/           # Frontend code
-├── backend/            # Backend code
-├── contracts/          # Smart contracts
-├── assets/             # PPT, video links, images
-├── docs/               # Architecture diagram, notes
-├── README.md           # A detailed description of your project
-├── .env.example
-├── package.json / requirements.txt
-├── yourppt.ppt
-
+📽 Demo
+🎥 Video Link: [Google Drive Demo](https://drive.google.com/drive/folders/1s6t8bNc8tFMnCLRlyF6iBDOvcoy4updq?usp=drive_link)

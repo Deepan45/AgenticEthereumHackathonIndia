@@ -1,0 +1,93 @@
+.dashboard-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-primary {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+}
+
+.card-success {
+  background: linear-gradient(135deg, #1cc88a 0%, #17a673 100%);
+}
+
+.card-warning {
+  background: linear-gradient(135deg, #f6c23e 0%, #dda20a 100%);
+}
+
+.card-danger {
+  background: linear-gradient(135deg, #e74a3b 0%, #be2617 100%);
+}
+
+.card-info {
+  background: linear-gradient(135deg, #36b9cc 0%, #258391 100%);
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.dashboard-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.activity-item {
+  border-left: 3px solid;
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.activity-completed {
+  border-left-color: #1cc88a;
+}
+
+.activity-pending {
+  border-left-color: #f6c23e;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  border-radius: 5px;
+}
+
+.chart-container {
+  height: 250px;
+  position: relative;
+}
+
+.action-btn {
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn i {
+  margin-right: 8px;
+}

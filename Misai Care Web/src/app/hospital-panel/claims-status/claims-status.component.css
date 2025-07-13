@@ -1,0 +1,215 @@
+/* Main Card Styles */
+.request-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1);
+  background: white;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.request-header {
+  background: linear-gradient(135deg, #1748a4, #1748a4);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  max-width: 300px;
+}
+
+.search-box input {
+  padding-left: 2.5rem;
+  border-radius: 50px;
+  border: 1px solid #e0e0e0;
+  background-color: #f8f8f8;
+  transition: all 0.3s;
+}
+
+.search-box input:focus {
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(115, 103, 240, 0.2);
+  border-color: #1748a4;
+}
+
+.search-box i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1748a4;
+}
+
+/* Filter Tabs */
+.filter-tabs .nav-link {
+  border: none;
+  color: #6e6b7b;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  margin: 0 0.25rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-tabs .nav-link.active {
+  background: linear-gradient(135deg, #1748a4, #1748a4);
+  color: white !important;
+  box-shadow: 0 3px 10px rgba(115, 103, 240, 0.4);
+}
+
+.filter-tabs .nav-link:hover:not(.active) {
+  background-color: #f8f8f8;
+  color: #7367F0;
+}
+
+/* Table Styles */
+.request-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.request-table thead th {
+  background-color: #f8f8f8;
+  color: #6e6b7b;
+  font-weight: 600;
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.request-table tbody td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  border-top: 1px solid #f1f1f1;
+}
+
+.request-table tbody tr:last-child td {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.request-table tbody tr:hover {
+  background-color: rgba(115, 103, 240, 0.05);
+}
+
+/* Avatar Styles */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Status Badges */
+.badge {
+  padding: 0.5rem 0.75rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.bg-warning-light {
+  background-color: rgba(255, 159, 67, 0.12);
+}
+
+.bg-success-light {
+  background-color: rgba(40, 199, 111, 0.12);
+}
+
+.bg-danger-light {
+  background-color: rgba(234, 84, 85, 0.12);
+}
+
+/* Action Button */
+.action-btn {
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(115, 103, 240, 0.3);
+}
+
+/* Pagination */
+.pagination-container {
+  border-top: 1px solid #f1f1f1;
+  padding-top: 1.5rem;
+}
+
+.page-item .page-link {
+  border: none;
+  color: #6e6b7b;
+  border-radius: 50% !important;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.25rem;
+  transition: all 0.3s;
+}
+
+.page-item.active .page-link {
+  background: linear-gradient(135deg, #1748a4, #1748a4);
+  color: white;
+}
+
+.page-item:not(.active) .page-link:hover {
+  background-color: #f8f8f8;
+  color: #7367F0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .filter-tabs .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .request-table thead {
+    display: none;
+  }
+  
+  .request-table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .request-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-top: none;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .request-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6e6b7b;
+    margin-right: 1rem;
+  }
+  
+  .request-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+}

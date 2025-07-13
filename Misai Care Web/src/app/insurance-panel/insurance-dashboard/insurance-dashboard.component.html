@@ -1,0 +1,206 @@
+<div class="container-fluid py-4">
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <h1 class="h2 fw-bold text-primary">Insurance Dashboard</h1>
+    <p class="text-muted">Overview of your insurance operations and performance</p>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="card dashboard-card card-primary text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="stat-label">Total Policies</div>
+              <div class="stat-value">{{ totalPolicies | number }}</div>
+            </div>
+            <div class="bg-white-10 rounded-circle p-3">
+              <i class="bi bi-file-earmark-text-fill fs-3"></i>
+            </div>
+          </div>
+          <div class="mt-3">
+            <span class="badge bg-white-20">+12% from last month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card dashboard-card card-success text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="stat-label">Active Claims</div>
+              <div class="stat-value">{{ activeClaims }}</div>
+            </div>
+            <div class="bg-white-10 rounded-circle p-3">
+              <i class="bi bi-clipboard2-pulse-fill fs-3"></i>
+            </div>
+          </div>
+          <div class="mt-3">
+            <span class="badge bg-white-20">+5% from last week</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card dashboard-card card-danger text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="stat-label">Disputed Claims</div>
+              <div class="stat-value">{{ disputedClaims }}</div>
+            </div>
+            <div class="bg-white-10 rounded-circle p-3">
+              <i class="bi bi-exclamation-triangle-fill fs-3"></i>
+            </div>
+          </div>
+          <div class="mt-3">
+            <span class="badge bg-white-20">-3% from last week</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card dashboard-card card-info text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="stat-label">Pending Approvals</div>
+              <div class="stat-value">{{ pendingApprovals }}</div>
+            </div>
+            <div class="bg-white-10 rounded-circle p-3">
+              <i class="bi bi-hourglass-split fs-3"></i>
+            </div>
+          </div>
+          <div class="mt-3">
+            <span class="badge bg-white-20">Needs attention</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="row g-4">
+    <!-- Left Column -->
+    <div class="col-lg-8">
+      <!-- Performance Metrics -->
+      <div class="card dashboard-card mb-4">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold">Performance Metrics</h5>
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <div class="mb-4">
+                <h6 class="text-muted mb-2">Claim Approval Rate</h6>
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="stat-value text-primary">{{ claimApprovalRate }}%</div>
+                  </div>
+                  <div>
+                    <span class="badge bg-success">+2%</span>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-primary" role="progressbar" 
+                       [style.width]="claimApprovalRate + '%'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-4">
+                <h6 class="text-muted mb-2">Customer Satisfaction</h6>
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="stat-value text-success">{{ customerSatisfaction }}%</div>
+                  </div>
+                  <div>
+                    <span class="badge bg-success">+5%</span>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-success" role="progressbar" 
+                       [style.width]="customerSatisfaction + '%'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-4">
+                <h6 class="text-muted mb-2">Avg. Resolution Time</h6>
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="stat-value text-warning">{{ resolutionTime }} days</div>
+                  </div>
+                  <div>
+                    <span class="badge bg-danger">-0.5 days</span>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-warning" role="progressbar" 
+                       [style.width]="(100 - (resolutionTime * 10)) + '%'"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card dashboard-card mb-4">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold">Quick Actions</h5>
+          <div class="d-flex gap-3 flex-wrap mt-3">
+            <a routerLink="/insurance/policy/create" class="btn btn-primary action-btn">
+              <i class="bi bi-plus-circle"></i> Create New Policy
+            </a>
+            <a routerLink="/insurance/claims" class="btn btn-success action-btn">
+              <i class="bi bi-journal-text"></i> Process Claims
+            </a>
+            <a routerLink="/insurance/dao" class="btn btn-warning action-btn">
+              <i class="bi bi-flag-fill"></i> Resolve Disputes
+            </a>
+            <a routerLink="/insurance/reports" class="btn btn-info action-btn">
+              <i class="bi bi-graph-up"></i> Generate Reports
+            </a>
+            <a routerLink="/insurance/clients" class="btn btn-dark action-btn">
+              <i class="bi bi-people-fill"></i> Client Management
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+      <!-- Recent Activity -->
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title fw-semibold mb-0">Recent Activity</h5>
+            <a href="#" class="text-primary small">View All</a>
+          </div>
+          
+          <div class="activity-list">
+            <div *ngFor="let activity of recentActivities" class="activity-item" 
+                 [class.activity-completed]="activity.status === 'completed'" 
+                 [class.activity-pending]="activity.status === 'pending'">
+              <div class="d-flex justify-content-between">
+                <strong>{{ activity.type }}</strong>
+                <small class="text-muted">{{ activity.time }}</small>
+              </div>
+              <p class="mb-1">{{ activity.client }}</p>
+              <span class="badge" 
+                    [class.bg-success]="activity.status === 'completed'"
+                    [class.bg-warning]="activity.status === 'pending'">
+                {{ activity.status | titlecase }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

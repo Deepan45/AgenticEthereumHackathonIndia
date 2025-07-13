@@ -1,0 +1,101 @@
+<div class="container py-5 animate-fade-in">
+  <div class="card mx-auto">
+    <div class="card-header text-center bg-primary text-white">
+      <h3>New Pre-Authorization Request</h3>
+    </div>
+    <div class="card-body p-4">
+      <!-- QR Scan or Upload -->
+      <div class="mb-4">
+        <label class="form-label">Upload Patient QR (ABHA / Health ID)</label>
+        <div class="input-group">
+          <button class="btn btn-outline-primary" type="button" (click)="openScanModal()">
+            <i class="fas fa-qrcode"></i> Upload QR
+          </button>
+        </div>
+      </div>
+
+      <!-- Patient Info -->
+      <div class="mb-4 row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Patient Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" [value]="patientName" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">ABHA ID</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+            <input type="text" class="form-control" [value]="abhaId" disabled>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagnosis -->
+      <div class="mb-4">
+        <label class="form-label">Diagnosis (ICD Code)</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-diagnoses"></i></span>
+          <input type="text" class="form-control" [(ngModel)]="diagnosis" placeholder="e.g. Heatstroke (ICD-10: T67)">
+        </div>
+      </div>
+
+      <!-- Cost -->
+      <div class="mb-4">
+        <label class="form-label">Estimated Treatment Cost (₹)</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-rupee-sign"></i></span>
+          <input type="number" class="form-control" [(ngModel)]="estimatedCost" placeholder="e.g. 22000">
+        </div>
+      </div>
+
+      <!-- Treatment -->
+      <div class="mb-4">
+        <label class="form-label">Suggested Procedures / Treatment</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-heartbeat"></i></span>
+          <input type="text" class="form-control" [(ngModel)]="suggestedTreatment"
+            placeholder="Describe the recommended treatment plan...">
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="d-grid mt-4">
+        <button class="btn btn-primary btn-lg py-3" (click)="submitPreAuth()">
+          <i class="fas fa-paper-plane"></i> Submit Pre-Authorization Request
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div class="modal fade" id="scanModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="fas fa-qrcode me-2"></i> Scan or Upload QR Code</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeScanModal()"></button>
+      </div>
+      <div class="modal-body p-0">
+        <!-- <div class="scanner-area" style="height: 300px">
+          <zxing-scanner
+            *ngIf="isScannerActive"
+            [formats]="allowedFormats"
+            (scanSuccess)="handleQrScan($event)"
+            class="w-100 h-100"
+          ></zxing-scanner>
+        </div> -->
+
+        <div class="p-3 border-top">
+          <label class="form-label">Or upload QR code image:</label>
+          <input type="file" class="form-control" accept="image/*" (change)="onQrImageUpload($event)">
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+        <small class="text-muted"><i class="fas fa-info-circle me-2"></i>Position the QR or upload image</small>
+      </div>
+    </div>
+  </div>
+</div>

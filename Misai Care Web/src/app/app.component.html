@@ -1,0 +1,23 @@
+<div class="layout-container" *ngIf="!isLoginPage">
+  <ng-container [ngSwitch]="selectedProject">
+    <app-hospital-sidenav
+      *ngSwitchCase="'hospital'"
+      (toggleSidebar)="isSidebarCollapsed = !isSidebarCollapsed"
+      class="sidebar"
+    ></app-hospital-sidenav>
+
+    <app-insurance-sidenav
+      *ngSwitchCase="'insurance'"
+      (toggleSidebar)="isSidebarCollapsed = !isSidebarCollapsed"
+      class="sidebar"
+    ></app-insurance-sidenav>
+  </ng-container>
+
+  <div class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="isLoginPage">
+  <router-outlet></router-outlet>
+</div>

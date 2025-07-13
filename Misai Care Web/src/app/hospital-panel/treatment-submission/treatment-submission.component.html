@@ -1,0 +1,80 @@
+<div class="container py-5 animate-fade-in">
+  <div class="card mx-auto">
+    <div class="card-header text-center">
+      <h3>Treatment Record Submission</h3>
+    </div>
+    <div class="card-body p-4 p-md-5">
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Upload Patient QR</label>
+        <div class="input-group">
+          <button class="btn btn-outline-primary" type="button"  (click)="openScanModal()">
+            <i class="bi bi-upc-scan"></i> Upload QR
+          </button>
+        </div>
+      </div>
+
+      <!-- Discharge Summary Input -->
+      <div class="mb-4">
+        <label class="form-label">Discharge Summary (Text or Upload PDF)</label>
+        <textarea class="form-control mb-2" rows="4"
+                  [(ngModel)]="dischargeText"
+                  placeholder="Type or paste discharge summary..."></textarea>
+        <input type="file" accept="application/pdf" class="form-control"
+               (change)="onDischargePdfUpload($event)">
+      </div>
+
+      <!-- Attachments -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Attachments</label>
+        <input type="file" class="form-control" multiple (change)="onAttachmentUpload($event)">
+        <small class="text-muted">Upload bills, prescriptions, lab reports, etc.</small>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button class="btn btn-primary btn-lg py-3" (click)="submitTreatmentRecord()">
+          <i class="fas fa-paper-plane"></i> Submit Treatment Record
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center p-5">
+        <div class="confirmation-icon">
+          <i class="fas fa-check-circle" style="font-size: 50px;"></i>
+        </div>
+        <h3 class="text-success mb-3">Request Submitted!</h3>
+        <p class="mb-4">The pre-authorization request has been successfully submitted to the insurance provider.</p>
+        <button type="button" class="btn btn-success px-4" (click)="closeConfirmationModal()">
+          <i class="fas fa-check"></i> Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div class="modal fade" id="scanModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="fas fa-qrcode me-2"></i> Scan or Upload QR Code</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeScanModal()"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="p-3 border-top">
+          <label class="form-label">Or upload QR code image:</label>
+          <input type="file" class="form-control" accept="image/*" (change)="onQrImageUpload($event)">
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+        <small class="text-muted"><i class="fas fa-info-circle me-2"></i>Position the QR or upload image</small>
+      </div>
+    </div>
+  </div>
+</div>

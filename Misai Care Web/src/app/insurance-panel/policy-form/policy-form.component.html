@@ -1,0 +1,123 @@
+<!-- src/app/insurance-panel/policy/policy-form.component.html -->
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header text-center mb-4">
+      <div class="header-icon">
+        <i class="fas fa-file-contract"></i>
+      </div>
+      <h2 class="form-title">Create / Edit Insurance Policy</h2>
+      <p class="form-subtitle">Complete all required fields to register a new policy</p>
+    </div>
+
+    <form (ngSubmit)="savePolicy()" class="policy-form">
+      <!-- Basic Information Section -->
+      <div class="form-section mb-4">
+        <h3 class="section-title">
+          <i class="fas fa-info-circle me-2"></i>
+          Basic Information
+        </h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Policy Name <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-signature"></i></span>
+              <input type="text" class="form-control" [(ngModel)]="policy.name" name="name" required placeholder="Enter policy name">
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <label class="form-label">Policy Type <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-list-ul"></i></span>
+              <select class="form-select" [(ngModel)]="policy.type" name="type" required>
+                <option value="Individual">Individual</option>
+                <option value="Family Floater">Family Floater</option>
+                <option value="Group">Group</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Details Section -->
+      <div class="form-section mb-4">
+        <h3 class="section-title">
+          <i class="fas fa-money-bill-wave me-2"></i>
+          Financial Details
+        </h3>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Premium (₹) <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-rupee-sign"></i></span>
+              <input type="number" class="form-control" [(ngModel)]="policy.premium" name="premium" required placeholder="Amount in INR">
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label">Age Group</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+              <input type="text" class="form-control" [(ngModel)]="policy.ageGroup" name="ageGroup" placeholder="e.g. 18-65">
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label">Coverage Amount</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-shield-alt"></i></span>
+              <input type="text" class="form-control" [(ngModel)]="policy.coverage" name="coverage" placeholder="e.g. ₹5 Lakh">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coverage Details Section -->
+      <div class="form-section mb-4">
+        <h3 class="section-title">
+          <i class="fas fa-heartbeat me-2"></i>
+          Coverage Details
+        </h3>
+        <label class="form-label">Covered Illnesses</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-notes-medical"></i></span>
+          <textarea class="form-control" rows="3" [(ngModel)]="policy.illnesses" name="illnesses" placeholder="List all covered illnesses..."></textarea>
+        </div>
+      </div>
+
+      <!-- Document Upload Section -->
+      <div class="form-section mb-4">
+        <h3 class="section-title">
+          <i class="fas fa-file-pdf me-2"></i>
+          Document Attachment
+        </h3>
+        <div class="file-upload-wrapper">
+          <label class="file-upload-label">
+            <input type="file" class="file-upload-input" (change)="onFileChange($event)" accept=".pdf">
+            <div class="file-upload-box">
+              <i class="fas fa-cloud-upload-alt fa-2x"></i>
+              <p>Click to upload policy document</p>
+              <small class="text-muted">PDF files only (max. 5MB)</small>
+            </div>
+          </label>
+          <div *ngIf="policy.document" class="file-preview mt-3">
+            <i class="fas fa-file-pdf text-danger me-2"></i>
+            <span>{{ policy.document.name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="router.navigate(['/insurance/policy/list'])">
+          <i class="fas fa-times me-2"></i>
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-2"></i>
+          Save Policy
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

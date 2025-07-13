@@ -1,0 +1,253 @@
+<section class="login-section d-flex align-items-center"
+  style="min-height: 100vh; background: linear-gradient(135deg, #eae8e8); background-size: 400% 400%;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="login-card shadow-lg rounded-4 overflow-hidden"
+          style="border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px); background: rgba(255,255,255,0.05);">
+          <div class="row g-0">
+
+            <div class="col-lg-6 d-none d-lg-flex p-0 position-relative">
+              <div class="branding-overlay"
+                style="background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover; height: 100%;">
+                <div class="p-5 position-relative z-index-1 h-100" style="background: rgba(23,72,164,0.95)">
+                  <div style="margin-bottom: 20px;">
+                    <img src="assets/images/misaibg.png" alt="Company Logo"
+                      style="max-width: 220px; height: auto; filter: brightness(0) invert(1);">
+                  </div>
+
+                  <h2 class="text-white mb-4 fw-bold">Miasi <span class="text-primary">Care</span> Portal</h2>
+                  <p class="text-white-60 mb-5">
+                    A decentralized health insurance system for secure, seamless patient care and claim management —
+                    powered by <strong class="text-white">ABHA, DID, and Smart Contracts</strong>.
+                  </p>
+
+                  <div class="feature-list mt-5">
+                    <div class="feature-item d-flex mb-4">
+                      <div class="feature-icon me-3">
+                        <div class="icon-wrapper bg-primary bg-opacity-10 p-2 rounded-circle">
+                          <i class="fas fa-id-badge text-primary"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white">Decentralized Identity (DID)</h5>
+                        <p class="mb-0 text-white-60">Authenticate securely using patient-linked DID & ABHA</p>
+                      </div>
+                    </div>
+
+                    <div class="feature-item d-flex mb-4">
+                      <div class="feature-icon me-3">
+                        <div class="icon-wrapper bg-primary bg-opacity-10 p-2 rounded-circle">
+                          <i class="fas fa-file-medical-alt text-primary"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white">Verifiable Credentials</h5>
+                        <p class="mb-0 text-white-60">Issue and validate health records, policy VCs, and pre-auth
+                          approvals</p>
+                      </div>
+                    </div>
+
+                    <div class="feature-item d-flex">
+                      <div class="feature-icon me-3">
+                        <div class="icon-wrapper bg-primary bg-opacity-10 p-2 rounded-circle">
+                          <i class="fas fa-university text-primary"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white">DAO-Governed Insurance</h5>
+                        <p class="mb-0 text-white-60">Submit claims transparently with smart contract-based approvals
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 p-5" style="background: #ffffff;">
+              <div class="text-center mb-5">
+                <h3 class="fw-bold text-dark mb-1">Sign In</h3>
+                <p class="text-muted">Access your management dashboard</p>
+              </div>
+
+              <!-- <form (ngSubmit)="onSubmit()" class="needs-validation">
+                <div class="form-group mb-4">
+                  <label for="username" class="form-label text-dark fw-medium">Username</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0 pe-1">
+                      <i class="fas fa-envelope text-primary"></i>
+                    </span>
+                    <input id="username" type="text" [(ngModel)]="username" name="username"
+                      class="form-control border-start-0 ps-2 py-3" placeholder="Username" required />
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label for="password" class="form-label text-dark fw-medium">Password</label>
+                  <div class="input-group position-relative">
+                    <span class="input-group-text bg-white border-end-0 pe-1">
+                      <i class="fas fa-key text-primary"></i>
+                    </span>
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" [(ngModel)]="password"
+                      name="password" class="form-control border-start-0 ps-2 py-3" placeholder="Password" required />
+                    <span class="position-absolute end-0 top-50 translate-middle-y me-3" style="cursor: pointer;">
+                      <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash text-primary' : 'fa-eye text-primary'"
+                        (click)="showPassword = !showPassword"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <div class="form-check">
+                  </div>
+                  <a class="text-primary small text-decoration-none fw-medium">Forgot password?</a>
+                </div>
+
+                <div class="form-group mb-3">
+                  <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold shadow"
+                    style="background: linear-gradient(90deg, #1e3a8a, #3b82f6); border: none;">
+                    Continue <i class="fas fa-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </form> -->
+
+              <div class="container py-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-12">
+
+                    <!-- Mobile + OTP -->
+                    <div *ngIf="!otpVerified">
+                      <!-- Step 1: Mobile Number -->
+                      <form (ngSubmit)="sendOTP()">
+                        <div class="mb-3">
+                          <label for="mobile" class="form-label">Mobile Number</label>
+                          <input type="text" class="form-control" id="mobile" [(ngModel)]="mobileNumber"
+                            name="mobileNumber" required maxlength="10" />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send OTP</button>
+                      </form>
+
+                      <!-- Step 2: OTP Input -->
+                      <form *ngIf="otpSent" (ngSubmit)="verifyOTP()" class="mt-4">
+                        <div class="mb-3">
+                          <label for="otp" class="form-label">Enter OTP</label>
+                          <input type="text" class="form-control" id="otp" [(ngModel)]="otp" name="otp" required
+                            maxlength="6" />
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Verify OTP</button>
+                      </form>
+                    </div>
+
+                    <!-- MetaMask + DID -->
+                    <div *ngIf="otpVerified" class="text-center mt-4">
+                      <p class="text-success">OTP verified for {{ mobileNumber }}!</p>
+                      <button class="btn btn-outline-primary w-100" (click)="connectMetaMask()">
+                        Connect MetaMask & Generate DID
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="text-center mt-5 pt-3">
+                <div class="text-muted small">© 2025 Misai Care. All rights reserved.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .login-section {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .login-card {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .form-control {
+    padding: 12px 15px;
+    transition: all 0.3s;
+    border-color: #e2e8f0;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    border-color: #3b82f6;
+  }
+
+  .btn-primary {
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5) !important;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover::after {
+    left: 100%;
+  }
+
+  .text-white-60 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .divider .border-top {
+    border-top-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .btn-outline-primary {
+    color: #1e3a8a;
+    border-color: #1e3a8a;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #1e3a8a;
+    color: white;
+  }
+</style>

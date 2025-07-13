@@ -1,0 +1,51 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+*.log.*
+log/
+debug.log
+error.log
+
+# Runtime
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# dotenv environment files
+.env
+.env.*.local
+
+# Build and output directories
+dist/
+build/
+tmp/
+temp/
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# IDEs & editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Optional npm cache directory
+.npm/
+
+# Swagger generated files (if applicable)
+swagger-output.json
+swagger.json

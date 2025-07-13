@@ -1,0 +1,74 @@
+.att-nav {
+    height: 70px;
+}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+        margin-right: 270px;
+    }
+}
+
+.navbar-bg {
+    background: linear-gradient(135deg, #1748a4, #1748a4) !important;
+}
+
+.kit-btn {
+    background: linear-gradient(135deg, #1748a4, #1748a4) !important;
+}
+
+.hide-sidebar-mini .btn-primary:hover{
+    background: linear-gradient(135deg, #1748a4, #1748a4) !important;
+}
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+}
+.main-sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+#sidebar-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+.main-footer {
+  background-color: #f1f1f1;
+  padding: 15px 30px;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #e4e4e4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+/* Normalize all Font Awesome icons */
+i.fas,
+i.far,
+i.fal,
+i.fab,
+i.fa,
+i.fa-solid,
+i.fa-regular,
+i.fa-light,
+i.fa-thin,
+i.fa-duotone {
+  font-size: 17px;     
+  width: 20px;         
+  min-width: 20px;     
+  text-align: center; 
+  line-height: 1;     
+  vertical-align: middle; 
+}
+.main-sidebar .sidebar-menu li a span {
+    margin-top: 3px;
+    width: 100%;
+    font-size: 14px;
+}

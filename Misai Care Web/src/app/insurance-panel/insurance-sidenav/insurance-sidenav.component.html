@@ -1,0 +1,66 @@
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg att-nav"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto">
+                <ul class="navbar-nav mr-3">
+                    <li><a data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                    </li>
+                </ul>
+                <div class="search-element">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown"><a data-toggle="dropdown"
+                        class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                        <div class="d-sm-none d-lg-inline-block" style="color: white; cursor: pointer;"></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-title">Logged in 5 min ago</div>
+                        <a class="dropdown-item has-icon">
+                            <i class="far fa-user"></i> Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item has-icon text-danger" (click)="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-sidebar sidebar-style-2">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <img src="assets/images/misaibg.png" alt="Logo" style="max-width: 150px; height: auto;">
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <img src="assets/images/misaifavbg.png" alt="Logo" style="max-width: 30px; height: auto;">
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-header">Dashboard</li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <a [routerLink]="['/insurance-dashboard']" class="nav-link">
+                            <i class="fas fa-fire"></i><span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-header">Management</li>
+                    <li routerLinkActive="active">
+                        <a [routerLink]="['/policy-list']" class="nav-link"><i style="margin-left: 10px;"
+                                class="fa-solid fa-person-dots-from-line"></i><span style="margin-top: -3px;">Policy List</span></a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a [routerLink]="['/policy-form']" class="nav-link"><i style="margin-left: 10px;"
+                                class="fa-solid fa-address-card"></i><span style="margin-top: -3px;">Add Policy</span></a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a [routerLink]="['/claims']" class="nav-link"><i style="margin-left: 10px;"
+                                class="fa-solid fa-circle-exclamation"></i><span style="margin-top: -3px;">Claims Inbox</span></a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</div>
